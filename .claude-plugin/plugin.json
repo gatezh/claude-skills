@@ -1,0 +1,7 @@
+{
+  "name": "dev",
+  "description": "Code review, native-first sweeps and PR descriptions",
+  "author": { "name": "gatezh" },
+  "repository": "https://github.com/gatezh/claude-skills",
+  "keywords": ["review", "native-first", "pull-request"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "gatezh",
+  "description": "gatezh's Claude Code skills",
+  "owner": {
+    "name": "gatezh"
+  },
+  "plugins": [
+    {
+      "name": "dev",
+      "source": "./",
+      "description": "Code review, native-first sweeps and PR descriptions"
+    }
+  ]
+}
