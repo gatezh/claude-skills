@@ -1,42 +1,30 @@
 ---
 name: pr-description
 description: Writes pull request descriptions. Use when creating a PR, writing a PR description, drafting a PR, or when the user asks to summarize changes for a pull request. Also triggers on phrases like "describe these changes", "what changed on this branch", or "PR summary".
+allowed-tools:
+  - Bash(gh repo view *)
+  - Bash(git fetch *)
+  - Bash(git diff *)
+  - Bash(git log *)
 ---
 
 # PR Description
 
 Write a clear, concise pull request description based on the actual diff of the current branch.
 
-## Step 1: Detect repo conventions
+## Step 1: Get the diff
 
-Run the detection script to determine the correct remote and base branch. Do NOT hardcode `origin` or `main` — this script handles it:
+Base branch and repository URL, as `gh` resolves them (it follows `gh repo set-default`, so forks diff against the right repo): !`gh repo view --json defaultBranchRef,url --jq '.defaultBranchRef.name + " " + .url'`
 
-```bash
-eval "$(bash /path/to/this/skill/scripts/detect-repo.sh)"
-```
-
-This sets `$REMOTE` and `$BASE` for use in subsequent commands.
-
-## Step 2: Get the diff
+Fetch that base fresh and diff against `FETCH_HEAD`. Never diff against a local base branch: it may be stale and pull in other people's commits. Fetching by URL also avoids guessing the remote's name.
 
 ```bash
-git diff $BASE...HEAD
+git fetch -q <url> <base>
+git diff FETCH_HEAD...HEAD
+git log --oneline FETCH_HEAD..HEAD
 ```
 
-If the diff is empty, the local base branch is probably stale. Fetch and retry:
-
-```bash
-git fetch $REMOTE $BASE
-git diff $REMOTE/$BASE...HEAD
-```
-
-Also gather the commit log for additional context:
-
-```bash
-git log $BASE...HEAD --oneline
-```
-
-## Step 3: Write the description
+## Step 2: Write the description
 
 Use this format:
 

@@ -7,8 +7,7 @@
   "plugins": [
     {
       "name": "dev",
-      "source": "./",
-      "description": "Code review, native-first sweeps and PR descriptions"
+      "source": "./"
     }
   ]
 }
