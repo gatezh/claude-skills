@@ -12,7 +12,7 @@ disable-model-invocation: true
 - A path or area (`services/api`, "auth", "the editing lock") limits the sweep. Default: the whole repository, application code first.
 - `list` stops after step 3: it writes the ledger and reports, without changing code.
 
-`/review` checks a diff. This skill checks code that already exists, and fixes what it finds, **5–10 items per run**, so each run is a small PR whose changes are easy to verify and to revert. Run it again for the next batch.
+`/dev:review` checks a diff. This skill checks code that already exists, and fixes what it finds, **5–10 items per run**, so each run is a small PR whose changes are easy to verify and to revert. Run it again for the next batch.
 
 ## 1. Inventory
 

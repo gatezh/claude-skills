@@ -3,5 +3,6 @@
   "description": "Code review, native-first sweeps and PR descriptions",
   "author": { "name": "gatezh" },
   "repository": "https://github.com/gatezh/claude-skills",
+  "license": "MIT",
   "keywords": ["review", "native-first", "pull-request"]
 }
